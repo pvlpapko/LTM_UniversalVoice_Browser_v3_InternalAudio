@@ -312,14 +312,19 @@ public class MainActivity extends Activity implements InternalAudioTranslator.St
         String js = "(()=>{let changed=0;for(const m of document.querySelectorAll('video,audio')){" +
                 "m.volume=Math.max(0,Math.min(1,(m.volume||1)+(" + delta + ")));changed++;}" +
                 "return changed;})()";
-        safe(() -> session.evaluateJS(js, null));
+        runPageJavaScript(js);
     }
 
     private void changePageMediaVolumeTo(float volume) {
         float fixed = Math.max(0f, Math.min(1f, volume));
         String js = "(()=>{let changed=0;for(const m of document.querySelectorAll('video,audio')){" +
                 "m.volume=" + fixed + ";changed++;}return changed;})()";
-        safe(() -> session.evaluateJS(js, null));
+        runPageJavaScript(js);
+    }
+
+    private void runPageJavaScript(String js) {
+        if (session == null || js == null || js.trim().isEmpty()) return;
+        safe(() -> session.loadUri("javascript:" + Uri.encode(js)));
     }
 
     private void addBookmark() {
