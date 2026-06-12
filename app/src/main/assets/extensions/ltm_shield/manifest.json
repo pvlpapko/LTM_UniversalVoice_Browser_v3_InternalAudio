@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "LTM Shield",
+  "version": "2.0.0",
+  "description": "Lightweight browser-wide tracker and ad request blocker for LTM UniversalVoice Browser.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ltm-shield@ltm.local",
+      "strict_min_version": "120.0"
+    }
+  },
+  "permissions": [
+    "<all_urls>",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.ltm.universalvoicebrowser'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.ltm.universalvoicebrowser'
+        minSdk 29
+        targetSdk 35
+        versionCode 3
+        versionName '3.0.0-internal-audio'
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation "org.mozilla.geckoview:geckoview:${GECKOVIEW_VERSION}"
+    implementation "com.google.mlkit:translate:${MLKIT_TRANSLATE_VERSION}"
+    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+}
