@@ -10,17 +10,12 @@ android {
         applicationId 'com.ltm.universalvoicebrowser'
         minSdk 29
         targetSdk 35
-        versionCode 4
-        versionName '3.0.1-internal-audio-small-apk'
-
-        // APK/AAB не будет тащить x86/x86_64 библиотеки GeckoView.
-        // Для реальных телефонов Android обычно нужны только ARM-варианты.
-        ndk {
-            abiFilters 'arm64-v8a', 'armeabi-v7a'
-        }
+        versionCode 5
+        versionName '3.0.2-internal-audio-small-apk'
     }
 
     // Делает отдельные APK под ABI вместо одного огромного universal APK.
+    // Не добавляй сюда ndk-фильтры: они конфликтуют с ABI-splits.
     splits {
         abi {
             enable true
@@ -30,7 +25,7 @@ android {
         }
     }
 
-    // Сжимает native .so внутри APK. Для GeckoView это сильно уменьшает размер APK-файла.
+    // Сжимает native .so внутри APK. Для GeckoView это уменьшает размер APK-файла.
     packaging {
         jniLibs {
             useLegacyPackaging = true
